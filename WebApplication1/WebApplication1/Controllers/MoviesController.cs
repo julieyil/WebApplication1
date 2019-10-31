@@ -10,27 +10,42 @@ namespace WebApplication1.Controllers
 {
     public class MoviesController : Controller
     {
-        public IActionResult Random()
-        {
-            var movie = new Movie() {Name = "Shrek!"};
-            var customers = new List<Customer>
-            {
-                new Customer{Name="Customer 1"},
-                new Customer{Name="Customer 2"}
-                };
+        //public IActionResult Random()
+        //{
+        //    var movie = new Movie() {Name = "Shrek!"};
+        //    var customers = new List<Customer>
+        //    {
+        //        new Customer{Name="Customer 1"},
+        //        new Customer{Name="Customer 2"}
+        //    };
 
-            var ViewModel = new RandomMovieViewModel
-            {
-                Movie = movie,
-                Customers = customers
-            };
+        //    var ViewModel = new RandomMovieViewModel
+        //    {
+        //        Movie = movie,
+        //        Customers = customers
+        //    };
 
             
-            return View(ViewModel);
+        //    return View(ViewModel);
 
-            //return Content("hello world");
-            //return HttpNotFound();
-            //return new EmptyResult();
+        //    //return Content("hello world");
+        //    //return HttpNotFound();
+        //    //return new EmptyResult();
+        //}
+
+        public ViewResult Index()
+        {
+            var movies = GetMovies();
+            return View(movies);
+        }
+
+        private IEnumerable<Movie> GetMovies()
+        {
+            return new List<Movie>
+            {
+                new Movie {Id=1, Name="Shrek!"},
+                new Movie{Id=2, Name="Joker"}
+            };
         }
     }
 }
